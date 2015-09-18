@@ -156,6 +156,7 @@
 		2A80B3E21BA7C89700EDD6D1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Hina Sakazaki";
 				TargetAttributes = {
@@ -409,6 +410,7 @@
 				2A80B40B1BA7C89700EDD6D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A80B40C1BA7C89700EDD6D1 /* Build configuration list for PBXNativeTarget "tomatosTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +419,7 @@
 				2A80B40E1BA7C89700EDD6D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
