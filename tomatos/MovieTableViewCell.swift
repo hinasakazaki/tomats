@@ -13,6 +13,17 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var movieImageView: UIImageView!
     
+    @IBOutlet weak var errorMessage: UILabel!
+   
+    @IBOutlet weak var movieTitle: UILabel!
+    
+    @IBOutlet weak var rating: UILabel!
+    
+    @IBOutlet weak var percent: UILabel!
+    
+    @IBOutlet weak var year: UILabel!
+    
+    @IBOutlet weak var time: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,9 +36,36 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     internal func setView(movie: NSDictionary){
-        let urlString = movie.valueForKeyPath("posters.profile") as? NSString
+        var urlString = movie.valueForKeyPath("posters.profile") as? NSString
+        
+        //image
+        var range = urlString?.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
+        if let range = range {
+            urlString = urlString!.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
+        }
+        
         let url = NSURL(string: urlString as! String)!
+        
         self.movieImageView.setImageWithURL(url)
+    
+        //title
+        let titleString = movie.valueForKey("title") as? String
+        self.movieTitle.text =  titleString
+        
+        let ratingString = movie.valueForKey("mpaa_rating") as? String
+        self.rating.text = "Rated " + ratingString!
+        
+        let yearString = movie.valueForKey("year") as? NSNumber
+        self.year.text = yearString?.stringValue
+        
+        let timeString = movie.valueForKey("runtime") as? NSNumber
+        self.time.text = (timeString?.stringValue)! + " mins"
+        
+        let percentString = movie.valueForKeyPath("ratings.audience_score") as? NSNumber
+        self.percent.text = (percentString?.stringValue)! + "%"
     }
 
+    func setError(){
+        errorMessage.text = "Network Error."
+    }
 }

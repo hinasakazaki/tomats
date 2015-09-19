@@ -8,12 +8,14 @@
 
 import UIKit
 import AFNetworking
+import SwiftLoader
 
 class MovieTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     @IBOutlet weak var tableView: UITableView!
   
     var movies : NSArray = []
+    var err : Bool = false
     
     override func viewDidLoad() {
         print("hello")
@@ -30,6 +32,8 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func performAsyncMovieFetch() {
+        
+        SwiftLoader.show(animated: true)
 
         let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
 
@@ -43,12 +47,16 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
                             //set the variables
                             self.movies = (json["movies"] as? [NSDictionary])!
                             self.tableView.reloadData()
+                            SwiftLoader.hide()
                         }
 
                     } catch {
-
+                        print("JSON error")
                     }
                 }
+            } else if let error = error {
+                print(error.description)
+                self.err = true
             }
         }
         task.resume()
@@ -61,21 +69,24 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+//     Get the new view controller using segue.destinationViewController.
+//     Pass the selected object to the new view controller.
+        var vc = segue.destinationViewController as! MovieDetailsViewController
+        var indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+        
+        vc.photo = self.photos[indexPath!.row] as? NSDictionary
     }
-    */
+   
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("com.hinerz.tomatoCell", forIndexPath: indexPath) as! MovieTableViewCell
         
         let movie = self.movies[indexPath.row] as? NSDictionary
         
+        if (self.err){
+            cell.setError()
+        }
         cell.setView(movie!);
         
         return cell

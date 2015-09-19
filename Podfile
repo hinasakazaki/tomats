@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'tomatos' do
        pod 'AFNetworking'
+       pod 'SwiftLoader'
 end
