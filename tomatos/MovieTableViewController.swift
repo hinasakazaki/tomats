@@ -12,6 +12,8 @@ import SwiftLoader
 
 class MovieTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var refreshControl:UIRefreshControl!
+
     @IBOutlet weak var tableView: UITableView!
   
     var movies : NSArray = []
@@ -22,6 +24,11 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
         super.viewDidLoad()
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.rowHeight = 100
@@ -29,6 +36,11 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
         performAsyncMovieFetch()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func refresh(sender: AnyObject) {
+        performAsyncMovieFetch()
+        self.refreshControl.endRefreshing()
     }
     
     func performAsyncMovieFetch() {
@@ -70,12 +82,12 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//     Get the new view controller using segue.destinationViewController.
-//     Pass the selected object to the new view controller.
-        var vc = segue.destinationViewController as! MovieDetailsViewController
-        var indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
         
-        vc.photo = self.photos[indexPath!.row] as? NSDictionary
+        let vc = segue.destinationViewController as! MovieDetailsViewController
+        let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+        
+        let index = indexPath!.row
+        vc.movie = self.movies[index] as? NSDictionary
     }
    
     

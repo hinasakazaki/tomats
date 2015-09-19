@@ -24,6 +24,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var year: UILabel!
     
     @IBOutlet weak var time: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

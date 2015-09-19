@@ -7,12 +7,33 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MovieDetailsViewController: UIViewController {
+    
+    var movie : NSDictionary?
+    
+    @IBOutlet weak var movieDescription: UITextView!
 
+    @IBOutlet weak var poster: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var urlString = movie!.valueForKeyPath("posters.profile") as? NSString
+        
+        //image
+        var range = urlString?.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
+        if let range = range {
+            urlString = urlString!.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
+        }
+        
+        let url = NSURL(string: urlString as! String)!
+        
+        self.poster.setImageWithURL(url)
 
+        self.movieDescription.text = movie!.valueForKey("synopsis") as? String
+        
         // Do any additional setup after loading the view.
     }
 
