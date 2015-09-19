@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A5913221BADF920003083A7 /* MovieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5913211BADF920003083A7 /* MovieTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		2A5913241BADFA2D003083A7 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5913231BADFA2D003083A7 /* MovieTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2A80B3F01BA7C89700EDD6D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80B3EF1BA7C89700EDD6D1 /* AppDelegate.swift */; };
 		2A80B3F21BA7C89700EDD6D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80B3F11BA7C89700EDD6D1 /* ViewController.swift */; };
 		2A80B3F51BA7C89700EDD6D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B3F31BA7C89700EDD6D1 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A5913211BADF920003083A7 /* MovieTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewController.swift; sourceTree = "<group>"; };
+		2A5913231BADFA2D003083A7 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		2A80B3EA1BA7C89700EDD6D1 /* tomatos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tomatos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A80B3EE1BA7C89700EDD6D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A80B3EF1BA7C89700EDD6D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,8 +82,10 @@
 			isa = PBXGroup;
 			children = (
 				2A80B3EF1BA7C89700EDD6D1 /* AppDelegate.swift */,
+				2A5913211BADF920003083A7 /* MovieTableViewController.swift */,
 				2A80B3F11BA7C89700EDD6D1 /* ViewController.swift */,
 				2A80B3F31BA7C89700EDD6D1 /* Main.storyboard */,
+				2A5913231BADFA2D003083A7 /* MovieTableViewCell.swift */,
 				2A80B3F61BA7C89700EDD6D1 /* Images.xcassets */,
 				2A80B3F81BA7C89700EDD6D1 /* LaunchScreen.xib */,
 				2A80B3ED1BA7C89700EDD6D1 /* Supporting Files */,
@@ -215,6 +221,8 @@
 			files = (
 				2A80B3F21BA7C89700EDD6D1 /* ViewController.swift in Sources */,
 				2A80B3F01BA7C89700EDD6D1 /* AppDelegate.swift in Sources */,
+				2A5913241BADFA2D003083A7 /* MovieTableViewCell.swift in Sources */,
+				2A5913221BADF920003083A7 /* MovieTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
