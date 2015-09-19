@@ -15,6 +15,8 @@
 		2A80B3F71BA7C89700EDD6D1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B3F61BA7C89700EDD6D1 /* Images.xcassets */; };
 		2A80B3FA1BA7C89700EDD6D1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80B3F81BA7C89700EDD6D1 /* LaunchScreen.xib */; };
 		2A80B4061BA7C89700EDD6D1 /* tomatosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80B4051BA7C89700EDD6D1 /* tomatosTests.swift */; };
+		2A9D83B01BAE091E007D996B /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9D83AE1BAE091E007D996B /* AFNetworking.framework */; };
+		2A9D83B11BAE091E007D996B /* Pods_tomatos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9D83AF1BAE091E007D996B /* Pods_tomatos.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		2A80B3FF1BA7C89700EDD6D1 /* tomatosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tomatosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A80B4041BA7C89700EDD6D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A80B4051BA7C89700EDD6D1 /* tomatosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tomatosTests.swift; sourceTree = "<group>"; };
+		2A9D83AE1BAE091E007D996B /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
+		2A9D83AF1BAE091E007D996B /* Pods_tomatos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_tomatos.framework; path = "Pods/../build/Debug-iphoneos/Pods_tomatos.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9D83B01BAE091E007D996B /* AFNetworking.framework in Frameworks */,
+				2A9D83B11BAE091E007D996B /* Pods_tomatos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,8 @@
 		2A80B3E11BA7C89700EDD6D1 = {
 			isa = PBXGroup;
 			children = (
+				2A9D83AE1BAE091E007D996B /* AFNetworking.framework */,
+				2A9D83AF1BAE091E007D996B /* Pods_tomatos.framework */,
 				2A80B3EC1BA7C89700EDD6D1 /* tomatos */,
 				2A80B4021BA7C89700EDD6D1 /* tomatosTests */,
 				2A80B3EB1BA7C89700EDD6D1 /* Products */,
@@ -349,8 +357,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = tomatos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -359,8 +372,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = tomatos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

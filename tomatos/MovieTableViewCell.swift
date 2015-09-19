@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MovieTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var movieImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +22,12 @@ class MovieTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    internal func setView(movie: NSDictionary){
+        let urlString = movie.valueForKeyPath("posters.profile") as? NSString
+        let url = NSURL(string: urlString as! String)!
+        self.movieImageView.setImageWithURL(url)
     }
 
 }

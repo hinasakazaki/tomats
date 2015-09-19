@@ -16,11 +16,15 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
     var movies : NSArray = []
     
     override func viewDidLoad() {
+        print("hello")
+
         super.viewDidLoad()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.rowHeight = 40
+        self.tableView.rowHeight = 100
+        
+        performAsyncMovieFetch()
         
         // Do any additional setup after loading the view.
     }
@@ -39,7 +43,6 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
                             //set the variables
                             self.movies = (json["movies"] as? [NSDictionary])!
                             self.tableView.reloadData()
-                            print(self.movies)
                         }
 
                     } catch {
@@ -70,10 +73,21 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("com.hinerz.tomatoCell", forIndexPath: indexPath) as! MovieTableViewCell
+        
+        let movie = self.movies[indexPath.row] as? NSDictionary
+        
+        cell.setView(movie!);
+        
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.movies.count
     }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    
 }
