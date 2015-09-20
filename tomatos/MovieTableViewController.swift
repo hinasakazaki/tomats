@@ -12,16 +12,15 @@ import SwiftLoader
 
 class MovieTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var networkErrorMessage: UIView!
+    
     var refreshControl:UIRefreshControl!
 
     @IBOutlet weak var tableView: UITableView!
   
     var movies : NSArray = []
-    var err : Bool = false
     
     override func viewDidLoad() {
-        print("hello")
-
         super.viewDidLoad()
         
         self.refreshControl = UIRefreshControl()
@@ -52,6 +51,11 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let req = NSURLRequest(URL: url)
 
         let task = NSURLSession.sharedSession().dataTaskWithRequest(req) { (data, response, error) -> Void in
+            if let error = error {
+                print(error.description + "HINA")
+                self.networkErrorMessage.hidden = false
+                self.view.bringSubviewToFront(self.networkErrorMessage)
+            }
             if let data = data {
                 dispatch_async(dispatch_get_main_queue()){
                     do {
@@ -66,9 +70,6 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
                         print("JSON error")
                     }
                 }
-            } else if let error = error {
-                print(error.description)
-                self.err = true
             }
         }
         task.resume()
@@ -95,11 +96,7 @@ class MovieTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("com.hinerz.tomatoCell", forIndexPath: indexPath) as! MovieTableViewCell
         
         let movie = self.movies[indexPath.row] as? NSDictionary
-        
-        if (self.err){
-            cell.setError()
-        }
-        cell.setView(movie!);
+                cell.setView(movie!);
         
         return cell
     }

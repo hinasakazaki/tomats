@@ -65,8 +65,4 @@ class MovieTableViewCell: UITableViewCell {
         let percentString = movie.valueForKeyPath("ratings.audience_score") as? NSNumber
         self.percent.text = (percentString?.stringValue)! + "%"
     }
-
-    func setError(){
-        errorMessage.text = "Network Error."
-    }
 }
